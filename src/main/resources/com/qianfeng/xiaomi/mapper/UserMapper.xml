@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.qianfeng.xiaomi.mapper.UserMapper">
+
+
+    <insert id="addUser" parameterType="com.qianfeng.xiaomi.user.pojo.User">
+
+        insert into tb_user(username,password,email,gender,flag,role,code) values (#{username},#{password},#{email},#{gender},#{flag},#{role},#{code})
+
+    </insert>
+    <select id="findUserByUsername" resultType="int" parameterType="String">
+
+        select count(id) from tb_user where username = #{username}
+
+    </select>
+    <select id="findUserByUsernameAndPassword" resultType="com.qianfeng.xiaomi.user.pojo.User">
+        select * from tb_user where username = #{username} and password=#{password} and flag = #{flag}
+    </select>
+
+    <update id="updatePassword" parameterType="com.qianfeng.xiaomi.user.pojo.User">
+        update tb_user set password = #{password} where username = #{username}
+    </update>
+
+    <update id="active">
+          UPDATE tb_user SET flag = 1 where email = #{email} and code = #{code}
+    </update>
+
+    <select id="findAll" resultType="com.qianfeng.xiaomi.user.pojo.User">
+        select * from tb_user
+        <where>
+            <if test="username != null">
+                and username like '%'#{username}'%'
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+        </where>
+    </select>
+
+    <delete id="remove" parameterType="int">
+        update tb_user set flag=2 where id=#{id}
+    </delete>
+
+
+
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.qianfeng.xiaomi.mapper.OrderMapper">
+
+    <insert id="addOrder" parameterType="com.qianfeng.xiaomi.order.pojo.Order">
+        insert into tb_order values (#{id},#{uid},#{money},#{status},#{time})
+    </insert>
+    <insert id="addOrderAndAddress" parameterType="com.qianfeng.xiaomi.order.pojo.Order_Address">
+        insert into tb_order_address values (#{oid},#{aid})
+    </insert>
+
+    <insert id="addOrderDetail" parameterType="com.qianfeng.xiaomi.order.pojo.OrderDetail">
+        insert into tb_orderdetail(oid,pid,num,money) values (#{oid},#{pid},#{num},#{money})
+    </insert>
+
+    <select id="findOrderByUid" parameterType="int" resultType="com.qianfeng.xiaomi.order.pojo.Order">
+        select * from tb_order where uid = #{uid}
+    </select>
+
+    <select id="findAidByOid" parameterType="string" resultType="int">
+        select aid from tb_order_address where oid = #{oid}
+    </select>
+
+    <select id="findOrderByOid" parameterType="string" resultType="com.qianfeng.xiaomi.order.pojo.Order">
+        select * from tb_order where id = #{id}
+    </select>
+
+    <resultMap id="orderdetailandgoodsmapper" type="com.qianfeng.xiaomi.order.pojo.OrderDetail">
+        <id property="id" column="odid" javaType="int"/>
+        <result column="oid" property="oid" javaType="string"/>
+        <result column="num" property="num" />
+        <result column="money" property="money"/>
+
+        <collection property="goods" ofType="com.qianfeng.xiaomi.goods.pojo.Goods">
+            <id column="pid" property="id"/>
+            <result column="name" property="name"/>
+            <result column="pubdate" property="pubdate"/>
+            <result column="picture" property="picture"/>
+            <result property="price" column="price"/>
+            <result property="star" column="star"/>
+            <result property="intro" column="intro"/>
+            <result property="typeid" column="typeid"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="findOrderDetailByOid" parameterType="string" resultMap="orderdetailandgoodsmapper">
+        select o.id odid,o.oid,o.num,o.money,g.* from tb_orderdetail o,tb_goods g where o.pid = g.id and oid = #{oid}
+    </select>
+
+    <select id="findOrderByPageWhere" resultType="com.qianfeng.xiaomi.vo.OrderVo">
+        SELECT  o.*, u.username FROM tb_order o INNER JOIN tb_user u ON o.uid=u.id
+        <where>
+            <if test="username != null">
+                and u.username like '%'#{username}'%'
+            </if>
+            <if test="status != null">
+                and o.status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateStatus" >
+        update tb_order set status= #{status} where id= #{oid}
+    </update>
+</mapper>

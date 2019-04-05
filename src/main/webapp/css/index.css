@@ -1,0 +1,413 @@
+/*
+* @Author: love
+* @Date:   2017-09-19 21:40:36
+* @Last Modified by:   love
+* @Last Modified time: 2018-08-02 21:04:48
+*/
+/* 通用工具 */
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.container{
+	width: 1226px;
+	margin: 0 auto;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+/* 头部图象 */
+.header-img{
+	width: 100%;
+	height: 120px;
+	background-image: url(../img/headerimg.jpg);
+	background-position: center;
+}
+/* 头部标题 */
+.header{ 
+	width: 100%;
+	height: 40px;
+	background: #333;
+	line-height: 40px;
+	font-family: sans-serif;
+
+}
+.header-left{
+	width: 641px;
+	height: 100%;	
+}
+.header-left a,.header-right a{
+		font-size: 12px;
+		color: #757575;
+}
+.header-left span,.header-right span{
+	margin-left: 3px;
+	font-size: 12px;
+}
+.header-right-cart{
+	width: 120px;
+	height: 100%;
+	background:#333;
+	text-align: center;
+	margin-left: 5px;
+	color: #757575;
+	background-image: url(../img/cart.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+	background-size: 20px;
+	font-size: 12px;
+}
+.header-right-cart:hover{
+	color: orange;
+	background-image: url(../img/cart1.png);
+	background-color: #fff;
+}
+.header-left a:hover,.header-right a:hover{
+	color: #fff;
+}
+/* 中间内容 */
+.clear{
+	clear: both;
+}
+.senu{
+	height: 100px;
+}
+.senu-logo{
+	width: 55px;
+	height: 55px;
+	margin-top: 22px;
+	margin-left: 0;
+}
+.senu-logo-img{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.senu-nav{
+	width: 	850px;
+	height: 100%;	
+}
+.nav-list{
+	width: 	820px;
+	height: 88px;
+	padding: 12px 0 0 30px;
+	position: relative;	
+
+}
+
+.nav-list li:first-child{
+	width: 142px;
+	height: 100%;
+	margin-right: 15px;
+}
+.nav-list li{
+	float: left;
+	font-size: 16px;
+	line-height: 88px;
+}
+.nav-list li a{
+	padding: 26px 10px 38px 10px;
+	color: #333;
+}
+.nav-list li a:hover{
+	color: #FF6700;
+}
+.senu-search{
+	width: 296px;
+	height: 50px;
+	margin-top: 25px;
+	position: relative;
+}
+.search-text{
+	width: 223px;
+	height: 44px;
+	border: 1px solid #e0e0e0;
+	padding: 0 10px;
+	font-size: 14px;
+	outline: 0;
+	
+}
+.search-submit{
+	width: 46px;
+	height: 46px;
+	border: 1px solid #e0e0e0;
+	background: #fff;
+	background-image: url(../img/sou.png);
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	background-position: center;
+
+}
+.search-submit:hover{
+	background: #FF6700;
+	background-image: url(../img/sou1.png);
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.search-text:focus{
+	
+	outline-color:  #FF6700;
+}
+.search-word{
+	position: absolute;
+	top: 10px;
+	left: 100px;
+}
+.search-word a{
+	font-size: 12px;
+	background: #eee;
+	display: inline-block;	
+}
+.search-word a:hover{
+	background:#ff6700;
+	color: #fff;
+}
+/* <!-- 滚动内容视图 --> */
+.home{
+	width: 1226px;
+	height: 1108px;
+	
+}
+/* 滚动视图 */
+.home-hero{
+	width: 100%;
+	/* height: 644px; */
+}
+.hero-slider{
+	width: 100%;
+	height: 460px;
+	position: relative;
+}
+.hidden{
+	width: 100%;
+	height: 340px;
+	background: #FFFFFF;
+	position: absolute;
+	top: 0;
+	visibility: hidden;
+	border-top: 1px solid #E0E0E0;
+}
+.kongzhi{
+	width: 400px;
+	height: 30px;
+	position: absolute;
+	
+	right: 30px;
+	bottom: 30px;
+}
+.kongzhi img{
+	float: right;
+	width: 20px;
+	height: 20px;
+	margin: 0 10px;
+	
+}
+
+.slider-left{
+	position: absolute;
+	left: 0;
+	top:0 ;
+	padding: 20px 0;
+}
+.slider-left ul{
+	width: 234px;
+	
+}
+.slider-left ul li{
+	width: 100%;
+	height: 42px;
+	background: #08090C;
+	
+}
+.slider-left ul li a{
+	font-size:;
+	padding-left:30px ;
+	color: #fff;
+	line-height: 42px; 
+}
+.slider-left ul li:hover{
+	background: #ff6700;
+
+}
+.slider-left ul li span{
+	font-size: 16px;
+	float: right;
+	line-height: 42px;
+	color: #e0e0e0;
+	font-weight: bold;
+	margin-right:20px;
+}
+.hero-sub{
+width: 100%;
+height: 170px;
+margin: 15px 0;
+
+}
+
+.sub{
+	width: 316px;
+	height: 170px;
+	background: blue;
+	margin-left:14px; 
+}
+.sub img{
+	display: block;
+	width: 316px;
+	height: 170px;
+}
+.sub1 img{
+	width: 234px;
+}
+
+.hero-sub .sub:first-child{
+	width: 234px;
+	margin-left: 0;
+}
+
+/* 普通视图 */
+
+.home-star{
+	width: 100%;
+	height: 438px;
+}
+.star-top{
+	width: 100%;
+	height: 58px;
+	font-size: 22px;
+	line-height: 58px;
+	font-weight: 200;
+	color: #333;
+	margin-top: 20px;
+}
+.star-bo{
+	width: 100%;
+	height: 340px;
+	padding: 0 0 40px 0;
+}
+.bo{
+	width: 234px;
+	height: 300px;
+	margin-right: 14px;
+	
+	padding-top: 29px;
+}
+.bo:last-child{
+	margin-right: 0;
+}
+.bo div{
+	width: 160px;
+	height: 160px;
+	margin: 0 auto;
+	
+}
+.bo div img{
+	width: 100%;
+	height: 100%;
+	display: block;
+	margin-bottom: 20px;
+}
+.word1{
+	width: 194px;
+	height: 21px;
+	margin-bottom: 3px;
+	font-size: 14px;
+    font-weight: 400;
+    color: #212121;
+    text-align: center;
+}
+.word1 a{
+	 color: #212121;
+    text-align: center;
+}
+.word2{
+	width: 194px;
+	height: 18px;
+margin-bottom: 12px;
+	font-size: 12px;
+	color: #b0b0b0;
+	text-align: center;
+
+
+	
+    
+}
+.bo div p:last-child{
+	width: 194px;
+	height: 21px;
+	font-size: 14px;
+	color: #ff6700;
+	text-align: center;
+
+}
+/* 尾部视图 */
+.footer-service{
+	height: 25px;
+	padding: 27px 0;
+	border-bottom: 1px solid #e0e0e0;
+}
+.footer-service ul li{
+	width: 242.734px;
+	height: 25px;
+	float: left;
+	display: flex;
+	justify-content: space-around;
+	border-right:1px solid #E0E0E0;
+}
+.footer-service ul li a{
+	    font-size: 16px;
+	    line-height: 25px;
+	    color: #171717;
+}
+.footer-link{
+	height: 112px;
+	padding: 40px 0;
+}
+.footer-link ul li{
+	float: left;
+	width: 160px;
+	height: 112px;
+}
+.footer-link ul li:last-child{
+	width: 251px;
+	border-left: 1px solid #e0e0e0;
+}
+.footer-link ul li a{
+	width: 160px;
+	height: 16px;
+	font-size: 12px;
+	margin-top:10px; 
+	display: inline-block;
+	color:#757575 ;
+}
+.footer-link ul li span{
+	width: 160px;
+	height: 18px;
+	margin-bottom: 26px;
+	font-size: 14px;
+	color: #424242;
+	
+	display: inline-block;
+
+}
+.footer-link ul li:last-child p:first-child{
+	font-size: 22px;
+	color: #ff6700;
+}
+.footer-link ul li:last-child p:nth-child(2){
+	font-size: 12px;
+	margin-bottom: 16px;
+	color: #616161;
+}
+.footer-link ul li:last-child a{
+	font-size: 12px;
+	color: #ff6700;
+	border: 1px solid #ff6700;
+}

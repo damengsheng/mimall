@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.qianfeng.xiaomi.mapper.CartMapper">
+
+    <select id="findCartIdByUid" parameterType="int" resultType="java.lang.Integer">
+        select id from tb_cart_user where uid=#{uid}
+    </select>
+    <select id="findCartByIdAndGid" resultType="com.qianfeng.xiaomi.cart.pojo.CartGoods">
+        select * from tb_cart_goods where cid=#{cid}  and gid = #{gid}
+    </select>
+
+    <insert id="addCart" parameterType="com.qianfeng.xiaomi.cart.pojo.CartGoods">
+        insert into tb_cart_goods values (#{cid}, #{gid},#{num})
+    </insert>
+
+    <update id="updateCartByCidAndGid" parameterType="com.qianfeng.xiaomi.cart.pojo.CartGoods">
+        update tb_cart_goods set num =num + #{num} where cid = #{cid} and gid = #{gid}
+    </update>
+
+    <select id="findCartAll" parameterType="int" resultType="com.qianfeng.xiaomi.cart.pojo.CartGoods">
+        select * from tb_cart_goods where cid = #{cid};
+    </select>
+
+    <delete id="deleteCartByCidAndGid">
+        delete from tb_cart_goods where cid = #{cid} and gid = #{gid}
+    </delete>
+
+    <delete id="deleteCartAll">
+        delete from tb_cart_goods
+    </delete>
+
+    <insert id="addCartUid" parameterType="com.qianfeng.xiaomi.cart.pojo.CartUser">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+      insert into tb_cart_user(uid) values (#{uid});
+    </insert>
+
+</mapper>

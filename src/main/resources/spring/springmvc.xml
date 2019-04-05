@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <context:component-scan base-package="com.qianfeng.xiaomi.*.controller"/>
+    <context:component-scan base-package="com.qianfeng.xiaomi.utils"/>
+    <context:property-placeholder location="classpath:redis.properties"/>
+
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="fastDfsUtils" class="com.qianfeng.xiaomi.utils.FastDfsUtils">
+        <constructor-arg value="classpath:conf.properties"></constructor-arg>
+    </bean>
+
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+        <property name="maxUploadSize" value="10240000"></property>
+        <property name="defaultEncoding" value="utf-8"></property>
+    </bean>
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.qianfeng.xiaomi.utils.DateConvert"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg value="www.damengsheng.cn" name="host"/>
+        <constructor-arg value="6379" name="port"/>
+        <constructor-arg value="123456" name="password"/>
+        <constructor-arg value="30000" name="timeout"/>
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
+    </bean>
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.jedis.pool.max-active}"/>
+        <property name="minIdle" value="${redis.jedis.pool.min-idle}"/>
+        <property name="maxIdle" value="${redis.jedis.pool.max-idle}"/>
+    </bean>
+
+    <bean class="com.qianfeng.xiaomi.utils.RedisClient" id="jedisClient">
+        <property name="jedisPool" ref="jedisPool"></property>
+    </bean>
+
+</beans>

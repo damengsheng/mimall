@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.qianfeng.xiaomi.mapper.AddressMapper">
+    <select id="findAddressByUid" resultType="com.qianfeng.xiaomi.address.pojo.Address">
+        select * from tb_address where uid=#{uid};
+    </select>
+
+    <select id="findaddressByAid" parameterType="int" resultType="com.qianfeng.xiaomi.address.pojo.Address">
+        select  * from tb_address where id=#{id};
+    </select>
+
+    <select id="findAddressAll" parameterType="int" resultType="com.qianfeng.xiaomi.address.pojo.Address">
+        select * from tb_address where uid=#{uid}
+    </select>
+
+    <update id="updateAddressLevelById" parameterType="int">
+        update tb_address set level = 1 where id = #{id}
+    </update>
+    <update id="updateAddressOriLevelById" parameterType="int">
+        update tb_address set level = 0
+    </update>
+
+    <update id="deleteAddressById" parameterType="int">
+        delete from tb_address where id = #{id}
+    </update>
+
+    <insert id="addAddress" parameterType="com.qianfeng.xiaomi.address.pojo.Address">
+        insert into tb_address(detail,name,phone,uid,level) values (#{detail},#{name},#{phone},#{uid},0)
+    </insert>
+
+    <update id="updateAddress" parameterType="com.qianfeng.xiaomi.address.pojo.Address">
+        update tb_address set detail = #{detail},name =#{name},phone=#{phone} where id=#{id}
+    </update>
+</mapper>
